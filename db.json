@@ -1,0 +1,18 @@
+{
+    "usuarios": [
+      {
+        "id": 1,
+        "user": "rgaldi",
+        "password": "123"
+      }
+
+    ],
+    "senhas": [
+      {
+        "id": 1,
+        "servico": "Facebook",
+        "user": "teste@teste.com",
+        "senha": "senhaTeste"
+      }
+    ]
+  }
