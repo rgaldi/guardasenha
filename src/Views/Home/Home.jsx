@@ -1,7 +1,19 @@
+import { Button, Container } from "@material-ui/core";
 import React from "react";
+import ListPassword from "../../components/listPassword/ListPassword";
+import {Link} from 'react-router-dom'
 
 function Home() {
-  return (<h1>Tela de Home</h1>);
+  return (
+    <Container>
+      <Link to='/password'> 
+        <Button type="submit" variant="contained" color="primary">
+          Adicionar Nova Senha
+        </Button>
+      </Link>
+      <ListPassword />
+    </Container>
+  );
 }
 
 export default Home;

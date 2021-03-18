@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Password from './Views/Password/Password';
 
-
-import Home from './Views/Home/Home'
-import Login from './Views/Login/Login';
+import App from './App'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Login/>
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );

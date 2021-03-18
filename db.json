@@ -13,6 +13,13 @@
         "servico": "Facebook",
         "user": "teste@teste.com",
         "senha": "senhaTeste"
+      },
+
+      {
+        "id": 2,
+        "servico": "Gmail",
+        "user": "teste@gmail.com",
+        "senha": "senhaTesteGmail"
       }
     ]
   }
