@@ -11,7 +11,7 @@ function Home() {
           Adicionar Nova Senha
         </Button>
       </Link>
-      <ListPassword />
+      <ListPassword url={'/senhas'}/>
     </Container>
   );
 }
