@@ -1,25 +1,37 @@
 import React, { useState } from "react";
+import { Redirect } from 'react-router-dom'
 
 //MaterialUi Import
-import { Button, Container, TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
+import { api } from "../../services/api";
 
 function Login() {
   const [user, setUser] = useState();
   const [password, setPassword] = useState();
+  const [redirect, setRedirect] = useState(false);
 
-  function AuthUser(dados) {
-    console.log(dados.password);
-    console.log(dados.user);
-    //Rota da API para atenticar usuário e redirecionar para o Home
+  async function AuthUser(dados) {    
+
+      const response = await api.get(`/usuarios?user=${dados.user}&password=${dados.password}`)
+      
+      if(response.data.length <= 0){
+        window.alert("Usuário não existe ou verifique a credencial utilizada")
+      } else {
+        setRedirect(true)
+      }
+
   }
 
   return (
+    
     <form
       onSubmit={(event) => {
         event.preventDefault();
         AuthUser({ user, password });
       }}
     >
+      {redirect && <Redirect to="/"/>}
+
       <h1>Login</h1>
 
       <TextField

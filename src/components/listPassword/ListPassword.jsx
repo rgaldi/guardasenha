@@ -9,16 +9,21 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { Button } from "@material-ui/core";
 
-import { ListaSenhas } from "../../services/api";
+import { ListaSenhas, api } from "../../services/api";
+import { Link } from "react-router-dom";
+
 
 function ListPassword({ url }) {
   const [password, setPassword] = useState([]);
 
   useEffect(() => {
     ListaSenhas(url, setPassword);
-  }, [url]);
+  }, [password]);
 
-
+async function Remove(id){
+  await api.delete(`/senhas/${id}`)
+}
+  
   return (
     <TableContainer component={Paper}>
       <Table size="small" aria-label="a dense table">
@@ -39,8 +44,12 @@ function ListPassword({ url }) {
               <TableCell align="center">{pswd.user}</TableCell>
               <TableCell align="center">{pswd.senha}</TableCell>
               <TableCell align="center">
-                <Button>Alterar</Button>
-                <Button>Excluir</Button>
+
+                <Link to={`/password/${pswd.id}`}> 
+                  <Button>Alterar</Button>
+                </Link>
+                
+                <Button onClick={(event) => Remove(pswd.id, event)}> Excluir</Button>
               </TableCell>
             </TableRow>
           ))}

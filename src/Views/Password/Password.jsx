@@ -3,21 +3,42 @@ import { Link, Redirect } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { api } from "../../services/api";
 
-function Password() {
+function Password({ match }) {
   const [servico, setServico] = useState();
   const [user, setUser] = useState();
   const [senha, setSenha] = useState();
   const [redirect, setRedirect] = useState(false);
 
   async function Save() {
-    await api
-      .post("/senhas", {
-        servico,
-        user,
-        senha,
-      })
-      .then(() => setRedirect(true));
+    if (match.params.id) {
+      await api
+        .put(`/senhas/${match.params.id}`, {
+          servico,
+          user,
+          senha,
+        })
+        .then(() => setRedirect(true));
+    } else {
+      await api
+        .post("/senhas", {
+          servico,
+          user,
+          senha,
+        })
+        .then(() => setRedirect(true));
+    }
   }
+
+  useEffect(() => {
+    async function LoadPasswordDatail() {
+      await api.get(`/senhas/${match.params.id}`).then((response) => {
+        setServico(response.data.servico);
+        setUser(response.data.user);
+        setSenha(response.data.senha);
+      });
+    }
+    LoadPasswordDatail();
+  }, []);
 
   return (
     <Container>
@@ -31,6 +52,7 @@ function Password() {
           onChange={(event) => {
             setServico(event.target.value);
           }}
+          value={servico}
         ></TextField>
 
         <TextField
@@ -39,6 +61,7 @@ function Password() {
           onChange={(event) => {
             setUser(event.target.value);
           }}
+          value={user}
         ></TextField>
 
         <TextField
@@ -47,6 +70,7 @@ function Password() {
           onChange={(event) => {
             setSenha(event.target.value);
           }}
+          value={senha}
         ></TextField>
         <Button variant="contained" color="primary" onClick={Save}>
           Salvar

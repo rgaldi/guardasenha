@@ -14,28 +14,16 @@
       "senha": "senhaTeste"
     },
     {
-      "id": 2,
       "servico": "Gmail",
       "user": "teste@gmail.com",
-      "senha": "senhaTesteGmail"
-    },
-    {
-      "nome": "Google",
-      "user": "abc",
-      "password": "123",
-      "id": 3
+      "senha": "senhaTesteGmail_teste",
+      "id": 2
     },
     {
       "servico": "Teste",
       "user": "123",
       "senha": "123",
       "id": 4
-    },
-    {
-      "servico": "DolceGusto",
-      "user": "teste",
-      "senha": "teste",
-      "id": 5
     }
   ]
 }
